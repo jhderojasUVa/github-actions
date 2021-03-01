@@ -8,3 +8,5 @@ export const sumNumbers = (...nums) => {
         return accumulator + current
     })
 }
+
+export const everythingIsFalse = () => false

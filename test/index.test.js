@@ -1,4 +1,4 @@
-import { sayHello, sumNumbers } from '../src'
+import { sayHello, sumNumbers, everythingIsFalse } from '../src'
 
 describe('index.js', () => {
     it('Say hello says hello', () => {
@@ -7,5 +7,8 @@ describe('index.js', () => {
     it('sum numbers, sums number', () => {
         const numsArray = [1, 2, 3]
         expect(sumNumbers(...numsArray)).toBe(6)
+    })
+    it('everything is false', () => {
+        expect(everythingIsFalse()).toBe(false)
     })
 })
