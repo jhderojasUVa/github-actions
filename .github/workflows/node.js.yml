@@ -18,7 +18,7 @@ jobs:
       matrix:
         node-version: [9.x, 10.x, 12.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [ ubuntu-latest ]
 
     steps:
     # Checkout actions
