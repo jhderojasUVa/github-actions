@@ -5,23 +5,26 @@ name: Node.js CI (test)
 
 on:
   push:
-    branches: [ master, $default-branch ]
+    branches: [ '**', '!master' ] # all branches except master
   pull_request:
     branches: [ master ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }} # gets the data from strategy.matrix.o
 
     strategy:
       matrix:
         node-version: [9.x, 10.x, 12.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
+    # Checkout actions
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
+      # Setup node action
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
