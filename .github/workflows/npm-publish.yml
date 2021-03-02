@@ -42,6 +42,10 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - run: chmod 777 ./scripts/test-script.sh
+      - run: ./scripts/test-script.sh
+      - run: npm run serve
+      - run: python ./scripts/python-script.py
+      #- run: npm publish
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

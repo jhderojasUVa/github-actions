@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "shell-something": "./scripts/test-script.sh",
+    "serve": "node ./script/node-script.js"
   },
   "repository": {
     "type": "git",
