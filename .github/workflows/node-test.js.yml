@@ -12,13 +12,12 @@ on:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }} # gets the data from strategy.matrix.o
+    runs-on: ubuntu-latest # gets the data from strategy.matrix.o
 
     strategy:
       matrix:
-        node-version: [9.x, 10.x, 12.x]
+        node-version: [ 10.x ]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        os: [ ubuntu-latest ]
 
     steps:
     # Checkout actions
@@ -28,6 +27,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: echo "Installing dependencies..."
     - run: npm ci
+    - run: echo "Building...."
     - run: npm run build --if-present
+    - run: echo "Testing...."
     - run: npm test
