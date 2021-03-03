@@ -34,8 +34,11 @@ jobs:
     - run: echo "Testing...."
     - run: npm test
     # extra
-    - run: chmod 777 ./scripts/test-script.sh
-    - run: ./scripts/test-script.sh
-    - run: npm run serve
-    - run: chmod 777 ./scripts/python-script.py 
-    - run: python ./scripts/python-script.py
+    - run: who
+    - run: cat /etc/hosts
+    - run: uname -a
+    #- run: chmod 777 ./scripts/test-script.sh
+    #- run: ./scripts/test-script.sh
+    #- run: npm run serve
+    #- run: chmod 777 ./scripts/python-script.py 
+    #- run: python ./scripts/python-script.py
