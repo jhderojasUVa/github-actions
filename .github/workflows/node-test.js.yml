@@ -34,11 +34,27 @@ jobs:
     - run: echo "Testing...."
     - run: npm test
     # extra
-    - run: who
-    - run: cat /etc/hosts
-    - run: uname -a
+    - run: |
+      who
+      cat /etc/hosts
+      uname -a
     #- run: chmod 777 ./scripts/test-script.sh
     #- run: ./scripts/test-script.sh
     #- run: npm run serve
     #- run: chmod 777 ./scripts/python-script.py 
     #- run: python ./scripts/python-script.py
+
+add_lerna:
+  runs-on: ubuntu-latest
+  strategy:
+      matrix:
+        node-version: [ 10.x, 12.x ]
+  steps:
+    - name: Use Node.js ${{ matrix.node-version }}
+        # Setup node action
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+    - run: |
+      npm i g lerna
+      yarn global add lerna
