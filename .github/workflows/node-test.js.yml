@@ -10,38 +10,38 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest # gets the data from strategy.matrix.o
+  # build:
+  #   runs-on: ubuntu-latest # gets the data from strategy.matrix.o
 
-    strategy:
-      matrix:
-        node-version: [ 10.x ]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+  #   strategy:
+  #     matrix:
+  #       node-version: [ 10.x ]
+  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    steps:
-    # Checkout actions
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      # Setup node action
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: echo "Installing dependencies..."
-    - run: npm ci
-    - run: echo "Building...."
-    - run: npm run build --if-present
-    - run: echo "Testing...."
-    - run: npm test
-    # extra
-    - run: |
-        who
-        cat /etc/hosts
-        uname -a
-    #- run: chmod 777 ./scripts/test-script.sh
-    #- run: ./scripts/test-script.sh
-    #- run: npm run serve
-    #- run: chmod 777 ./scripts/python-script.py 
-    #- run: python ./scripts/python-script.py
+  #   steps:
+  #   # Checkout actions
+  #   - uses: actions/checkout@v2
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     # Setup node action
+  #     uses: actions/setup-node@v1
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #   - run: echo "Installing dependencies..."
+  #   - run: npm ci
+  #   - run: echo "Building...."
+  #   - run: npm run build --if-present
+  #   - run: echo "Testing...."
+  #   - run: npm test
+  #   # extra
+  #   - run: |
+  #       who
+  #       cat /etc/hosts
+  #       uname -a
+  #   #- run: chmod 777 ./scripts/test-script.sh
+  #   #- run: ./scripts/test-script.sh
+  #   #- run: npm run serve
+  #   #- run: chmod 777 ./scripts/python-script.py 
+  #   #- run: python ./scripts/python-script.py
 
   add_lerna:
     runs-on: ubuntu-latest
@@ -57,3 +57,4 @@ jobs:
       - run: |
           npm i g lerna
           yarn global add lerna
+          lerna
