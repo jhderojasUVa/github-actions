@@ -1,12 +1,13 @@
 {
-  "name": "github-actions",
+  "name": "@jhderojas/github-actions",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "shell-something": "./scripts/test-script.sh",
-    "serve": "node ./script/node-script.js"
+    "serve": "node ./script/node-script.js",
+    "build": "echo Building..."
   },
   "repository": {
     "type": "git",
