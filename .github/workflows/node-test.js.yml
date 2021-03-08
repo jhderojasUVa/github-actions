@@ -10,26 +10,103 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  # build:
+  #   runs-on: ubuntu-latest # gets the data from strategy.matrix.o
 
-    runs-on: ubuntu-latest # gets the data from strategy.matrix.o
+  #   strategy:
+  #     matrix:
+  #       node-version: [ 10.x ]
+  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    strategy:
-      matrix:
-        node-version: [ 10.x ]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+  #   steps:
+  #   # Checkout actions
+  #   - uses: actions/checkout@v2
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     # Setup node action
+  #     uses: actions/setup-node@v1
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #   - run: echo "Installing dependencies..."
+  #   - run: npm ci
+  #   - run: echo "Building...."
+  #   - run: npm run build --if-present
+  #   - run: echo "Testing...."
+  #   - run: npm test
+  #   # extra
+  #   - run: |
+  #       who
+  #       cat /etc/hosts
+  #       uname -a
+  #   #- run: chmod 777 ./scripts/test-script.sh
+  #   #- run: ./scripts/test-script.sh
+  #   #- run: npm run serve
+  #   #- run: chmod 777 ./scripts/python-script.py 
+  #   #- run: python ./scripts/python-script.py
 
+  test:
+    name: Test packages
+    runs-on: ubuntu-latest
     steps:
-    # Checkout actions
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      # Setup node action
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: echo "Installing dependencies..."
-    - run: npm ci
-    - run: echo "Building...."
-    - run: npm run build --if-present
-    - run: echo "Testing...."
-    - run: npm test
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - run: npm ci
+      - run: npm test
+
+
+  # add_lerna_global:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #       matrix:
+  #         node-version: [ 10.x, 12.x ]
+  #   steps:
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       # Setup node action
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: |
+  #         npm i g lerna
+  #         yarn global add lerna
+  
+  # add_lerna_package_npm:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #       matrix:
+  #         node-version: [ 10.x, 12.x ]
+  #   steps:
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       # Setup node action
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: npm ci
+  
+  # add_lerna_package_yarn:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #       matrix:
+  #         node-version: [ 10.x, 12.x ]
+  #   steps:
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       # Setup node action
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: yarn install
+
+  # lerna_npx:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #       matrix:
+  #         node-version: [ 10.x, 12.x ]
+  #   steps:
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       # Setup node action
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: npx lerna
