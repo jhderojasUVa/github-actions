@@ -1,1 +1,3 @@
 node_modules
+# Avoid sensible data
+.npmrc
