@@ -54,7 +54,6 @@ jobs:
         with:
           node-version: 10.x
       - run: npm ci
-      - name: Do the flop, I say, the tests
       - run: npm test
 
 
