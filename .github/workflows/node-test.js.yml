@@ -48,12 +48,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout with node
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Install dependencies
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
       - run: npm ci
+      - name: Do the flop, I say, the tests
       - run: npm test
 
 
